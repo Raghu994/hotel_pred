@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Cancellation Prediction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hotel Cancellation Prediction</h1>
+
+    <form action="/predict" method="post" id="prediction-form">
+        <label for="hotel">Hotel Type:</label>
+        <select id="hotel" name="hotel">
+            <option value="1">Resort Hotel</option>
+            <option value="0">City Hotel</option>
+        </select><br><br>
+
+        <label for="lead_time">Lead Time:</label>
+        <input type="number" id="lead_time" name="lead_time" min="0"><br><br>
+
+        <label for="arrival_date_week_number">Arrival Date Week Number:</label>
+        <input type="number" id="arrival_date_week_number" name="arrival_date_week_number" min="1" max="52"><br><br>
+
+        <label for="adults">Number of Adults:</label>
+        <input type="number" id="adults" name="adults" min="0"><br><br>
+
+        <label for="children">Number of Children:</label>
+        <input type="number" id="children" name="children" min="0"><br><br>
+
+        <label for="babies">Number of Babies:</label>
+        <input type="number" id="babies" name="babies" min="0"><br><br>
+
+        <label for="days_in_waiting_list">Days in Waiting List:</label>
+        <input type="number" id="days_in_waiting_list" name="days_in_waiting_list" min="0"><br><br>
+
+        <label for="adr">ADR (Average Daily Rate):</label>
+        <input type="number" id="adr" name="adr" min="0.0"><br><br>
+
+        <label for="required_car_parking_spaces">Required Car Parking Spaces:</label>
+        <input type="number" id="required_car_parking_spaces" name="required_car_parking_spaces" min="0"><br><br>
+
+        <label for="total_of_special_requests">Total Special Requests:</label>
+        <input type="number" id="total_of_special_requests" name="total_of_special_requests" min="0"><br><br>
+
+        <label for="meal">Meal Type:</label>
+        <select id="meal" name="meal">
+            <option value="0">BB</option>
+            <option value="1">FB</option>
+            <option value="2">HB</option>
+            <option value="3">SC</option>
+            <option value="4">Undefined</option>
+        </select><br><br>
+
+        <label for="distribution_channel">Distribution Channel:</label>
+        <select id="distribution_channel" name="distribution_channel">
+            <option value="0">Corporate</option>
+            <option value="1">Direct</option>
+            <option value="2">GDS</option>
+            <option value="3">TA/TO</option>
+            <option value="4">Undefined</option>
+        </select><br><br>
+
+        <label for="reserved_room_type">Reserved Room Type:</label>
+        <select id="reserved_room_type" name="reserved_room_type">
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+            <option value="4">E</option>
+            <option value="5">F</option>
+            <option value="6">G</option>
+            <option value="7">H</option>
+            <option value="8">L</option>
+            <option value="9">P</option>
+        </select><br><br>
+
+        <label for="deposit_type">Deposit Type:</label>
+        <select id="deposit_type" name="deposit_type">
+            <option value="0">No Deposit</option>
+            <option value="1">Non Refund</option>
+            <option value="2">Refundable</option>
+        </select><br><br>
+
+        <button type="submit" id="predict-button">Predict</button>
+    </form>
+
+    <h2>Prediction Result:</h2>
+    <p id="prediction">Prediction: {{predictions}}<span id="prediction-text"></span></p>
+    <p id="probability">Probability: {{probabilities}}<span id="probability-text"></span></p>
+</body>
+</html>
